@@ -11,8 +11,8 @@ const navLinks = [
 
 export default function Header({
   logoSrc,
-  logoAlt = "Formation Création Web",
-  title = "Formation Création Web",
+  logoAlt = "LEARNIT",
+  title = "LEARNIT",
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();

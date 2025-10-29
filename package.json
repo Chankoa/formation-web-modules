@@ -9,7 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sass:watch": "sass src/styles/main.scss src/styles/build/main.css --no-source-map --watch"
+    "sass:build": "sass src/styles/main.scss:src/styles/build/main.css",
+    "sass:watch": "sass --watch src/styles/main.scss:src/styles/build/main.css"
   },
   "dependencies": {
     "prismjs": "^1.30.0",

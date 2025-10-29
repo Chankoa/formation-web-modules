@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import CodeHighlight from "../components/CodeHighlight";
 import modulesData from "../data/modules-formation-web.json";
+import ExplorerShowcase from "../components/ExplorerShowcase";
+import InfoGrid from "../components/InfoGrid";
 
 const modules = modulesData.modules;
 
@@ -121,9 +123,13 @@ export default function ModulePage() {
       </header>
 
       <div className="module-body container">
-        <section className="module-section module-section--summary card">
+  <section className="module-section module-section--summary padded">
           <h2>Vue d’ensemble</h2>
           <p>{content.fr}</p>
+
+            <ExplorerShowcase />
+            <InfoGrid />
+
         </section>
 
         <section className="module-section module-section--grid">

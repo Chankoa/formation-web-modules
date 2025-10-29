@@ -5,7 +5,7 @@ export default function IntroCard() {
     formationOverview;
 
   return (
-    <section className="card intro-card" id="intro">
+    <section className="intro-card" id="intro">
       <h2>{title}</h2>
       <p className="subtitle">{subtitle}</p>
       <div className="intro-card__grid">

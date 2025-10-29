@@ -715,11 +715,9 @@ html[data-theme="dark"] .btn-secondary:hover {
   display: grid;
   gap: tokens.space-var(sm);
 }
-
 .module-section--summary {
   background: tokens.color-var(card);
 }
-
 .module-section--grid {
   display: grid;
   gap: tokens.space-var(md);

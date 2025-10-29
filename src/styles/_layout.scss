@@ -18,7 +18,7 @@
 
 .main-content {
   flex: 1 1 auto;
-  padding-top: tokens.space-var(xl);
+  /*padding-top: tokens.space-var(xl);*/
   padding-bottom: tokens.space-var(xxl);
 }
 
@@ -42,11 +42,12 @@
   margin-bottom: tokens.space-var(xl);
 }
 
+/*
 .card h2,
 .card h3 {
   color: tokens.color-var(brand);
 }
-
+*/
 .bullets {
   margin: tokens.space-var(sm) 0 0 tokens.space-var(md);
   padding-left: tokens.space-var(sm);
@@ -68,10 +69,24 @@
 
 .note {
   background: tokens.color-var(note);
+  color: tokens.color-var(text);
 }
 
 .exercise {
   background: tokens.color-var(exercise);
+  color: tokens.color-var(text);
+}
+
+.note h3,
+.exercise h3 {
+  color: tokens.color-var(brand);
+}
+
+.note p,
+.note li,
+.exercise p,
+.exercise li {
+  color: inherit;
 }
 
 .contact-section {

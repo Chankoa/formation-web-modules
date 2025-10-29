@@ -40,6 +40,10 @@
     --color-text: #{tokens.color(text-dark)};
     --color-muted: #{tokens.color(muted-dark)};
     --color-border: #{tokens.color(border-dark)};
+    --color-brand: #{tokens.color(text-dark)};
+    --color-brand-soft: #{tokens.color(text-dark)};
+    --color-note: #{tokens.color(note-dark)};
+    --color-exercise: #{tokens.color(exercise-dark)};
   }
 }
 
@@ -52,6 +56,10 @@ html[data-theme="dark"] {
   --color-text: #{tokens.color(text-dark)};
   --color-muted: #{tokens.color(muted-dark)};
   --color-border: #{tokens.color(border-dark)};
+  --color-brand: #{tokens.color(text-dark)};
+  --color-brand-soft: #{tokens.color(text-dark)};
+  --color-note: #{tokens.color(note-dark)};
+  --color-exercise: #{tokens.color(exercise-dark)};
 }
 
 html[data-theme="light"] {

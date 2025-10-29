@@ -7,12 +7,18 @@ import { formationModules } from "../data/formation";
 
 export default function HomePage() {
   return (
-    <main className="container main-content">
-      <IntroCard />
-      <ExplorerShowcase />
-      <ModuleSection modules={formationModules} />
-      <InfoGrid />
-      <ContactSection />
+    <main className="main-content">
+      <header className="module-hero">
+        <div className="container">
+        <IntroCard />
+        </div>
+      </header>
+      <div className="container">
+        <ModuleSection modules={formationModules} />
+        <InfoGrid />
+        <ExplorerShowcase />
+        <ContactSection />
+      </div>
     </main>
   );
 }
