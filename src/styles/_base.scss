@@ -1,0 +1,85 @@
+@use "./design-system/tokens" as tokens;
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: tokens.color-var(bg);
+  color: tokens.color-var(text);
+  font-family: tokens.font-family-var(main);
+  font-size: tokens.font-size-var(body);
+  line-height: var(--lh-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: tokens.font-family-var(headings);
+  color: tokens.color-var(brand);
+  font-weight: tokens.font-weight-value(bold);
+  margin: 0 0 tokens.space-var(xs);
+}
+
+p {
+  margin: 0 0 tokens.space-var(md);
+  color: tokens.color-var(text);
+}
+
+a {
+  color: tokens.color-var(link);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: tokens.color-var(link-hover);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+pre,
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

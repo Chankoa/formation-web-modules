@@ -1,0 +1,263 @@
+@use "sass:map";
+@use "sass:meta";
+
+/* ==========================================================================
+   Design tokens registry
+   --------------------------------------------------------------------------
+   Centralises the foundations (colors, typography, spacing...) for the design
+   system so we can consume them consistently in every layer.
+   ========================================================================== */
+
+$colors: (
+  brand: #1a1a1a,
+  brand-soft: #2c2c2c,
+  brand-contrast: #ffffff,
+  accent: #d72660,
+  accent-hover: #f78ca2,
+  link: #d72660,
+  link-hover: #f78ca2,
+  text: #1a1a1a,
+  text-secondary: #2c2c2c,
+  muted: #5c6b7a,
+  text-btn: #ffffff,
+  bg: #ffffff,
+  bg-alt: #f8f8fa,
+  surface: #ffffff,
+  surface-alt: #f8f8fa,
+  card: #ffffff,
+  note: #fff3e0,
+  exercise: #e9f2ff,
+  border: rgba(0, 0, 0, 0.08),
+  border-strong: rgba(0, 0, 0, 0.18),
+  code-bg: #1e1e1e,
+  bar-bg: #2d2d2d,
+  bar-border: #3a3a3a,
+  bg-dark: #121318,
+  surface-dark: #15171c,
+  surface-alt-dark: #1c1f26,
+  card-dark: #15171c,
+  text-dark: #f3f4f6,
+  muted-dark: #cbd5f5,
+  border-dark: rgba(255, 255, 255, 0.12)
+);
+
+$font-families: (
+  main: '"Roboto", system-ui, -apple-system, "Segoe UI", sans-serif',
+  headings: '"Roboto", system-ui, -apple-system, "Segoe UI", sans-serif'
+);
+
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  black: 800
+);
+
+$font-scale: (
+  base: 16px,
+  h1: clamp(1.75rem, 4.5vw + 1rem, 2.75rem),
+  h2: clamp(1.35rem, 3vw + 0.9rem, 2.15rem),
+  h3: clamp(1.2rem, 2.4vw + 0.8rem, 1.65rem),
+  h4: clamp(1.05rem, 2vw + 0.7rem, 1.4rem),
+  h5: clamp(1rem, 1.5vw + 0.6rem, 1.2rem),
+  h6: clamp(0.95rem, 1vw + 0.5rem, 1.05rem),
+  body: clamp(0.95rem, 0.5vw + 0.85rem, 1.05rem),
+  lead: clamp(1.0625rem, 0.75vw + 0.9rem, 1.2rem),
+  small: clamp(0.8125rem, 0.3vw + 0.7rem, 0.9rem),
+  display: clamp(2.5rem, 4vw + 1.25rem, 3.5rem)
+);
+
+$line-heights: (
+  base: 1.6,
+  tight: 1.35,
+  loose: 1.85
+);
+
+$spacing: (
+  xxxs: 0.125rem,
+  xxs: 0.25rem,
+  xs: 0.5rem,
+  sm: 0.75rem,
+  md: 1rem,
+  lg: 1.5rem,
+  xl: 2rem,
+  xxl: 3rem,
+  xxxl: 4rem
+);
+
+$radii: (
+  sm: 6px,
+  md: 12px,
+  lg: 18px,
+  pill: 999px
+);
+
+$shadows: (
+  sm: (0 0 5px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1)),
+  md: (0 0 10px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1)),
+  glow: 0 0 15px rgba(215, 38, 96, 0.45)
+);
+
+$transitions: (
+  fast: 0.15s ease-in-out,
+  base: 0.28s ease-in-out,
+  slow: 0.5s ease-in-out
+);
+
+$misc: (
+  switch-width: 60px,
+  switch-height: 30px,
+  switch-circle-size: 24px,
+  container-max: 1080px
+);
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  "2xl": 1536px
+);
+
+$registry: (
+  color: $colors,
+  font-family: $font-families,
+  font-weight: $font-weights,
+  font-size: $font-scale,
+  line-height: $line-heights,
+  space: $spacing,
+  radius: $radii,
+  shadow: $shadows,
+  transition: $transitions,
+  misc: $misc,
+  breakpoint: $breakpoints
+);
+
+@function token($group, $name) {
+  @if not map.has-key($registry, $group) {
+    @error "Unknown token group `#{$group}`.";
+  }
+
+  $group-map: map.get($registry, $group);
+
+  @if not map.has-key($group-map, $name) {
+    @error "Unknown token `#{$group}.#{$name}`.";
+  }
+
+  @return map.get($group-map, $name);
+}
+
+@function color($name) {
+  @return token(color, $name);
+}
+
+@function color-var($name) {
+  @return var(--color-#{$name});
+}
+
+@function font-family-value($role: main) {
+  @return token(font-family, $role);
+}
+
+@function font-family-var($role: main) {
+  @return var(--font-#{$role});
+}
+
+@function font-weight-value($weight: regular) {
+  @return token(font-weight, $weight);
+}
+
+@function font-size-value($scale: body) {
+  @return token(font-size, $scale);
+}
+
+@function font-size-var($scale: body) {
+  @return var(--fs-#{$scale});
+}
+
+@function line-height-value($scale: base) {
+  @return token(line-height, $scale);
+}
+
+@function space-value($size: md) {
+  @return token(space, $size);
+}
+
+@function space-var($size: md) {
+  @return var(--space-#{$size});
+}
+
+@function radius-value($size: md) {
+  @return token(radius, $size);
+}
+
+@function radius-var($size: md) {
+  @return var(--radius-#{$size});
+}
+
+@function shadow-value($level: sm) {
+  @return token(shadow, $level);
+}
+
+@function shadow-var($level: sm) {
+  @return var(--shadow-#{$level});
+}
+
+@function transition-value($speed: base) {
+  @return token(transition, $speed);
+}
+
+@function transition-var($speed: base) {
+  @if $speed == base {
+    @return var(--transition);
+  }
+
+  @return var(--transition-#{$speed});
+}
+
+@function misc-value($item) {
+  @return token(misc, $item);
+}
+
+@function breakpoint-value($alias) {
+  @return token(breakpoint, $alias);
+}
+
+@mixin media-up($alias) {
+  @media (min-width: breakpoint-value($alias)) {
+    @content;
+  }
+}
+
+@mixin media-down($alias) {
+  @media (max-width: #{breakpoint-value($alias) - 0.02px}) {
+    @content;
+  }
+}
+
+@mixin media-between($from, $until) {
+  @media (min-width: breakpoint-value($from)) and (max-width: #{breakpoint-value($until) - 0.02px}) {
+    @content;
+  }
+}
+
+@mixin focus-ring($color: color-var(accent)) {
+  outline: 3px solid rgba(0, 0, 0, 0);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px color(accent);
+    outline: 3px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+@mixin emit-css-vars($map, $prefix) {
+  @each $token, $value in $map {
+    $token-name: if(meta.type-of($token) == color, "" + $token, $token);
+    $resolved-value: if(meta.type-of($value) == color, "" + $value, $value);
+    #{$prefix}-#{$token-name}: #{$resolved-value};
+  }
+}

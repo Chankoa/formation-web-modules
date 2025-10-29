@@ -1,0 +1,109 @@
+@use "./design-system/tokens" as tokens;
+
+.app {
+  min-height: 100vh;
+  background: tokens.color-var(bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: tokens.space-var(lg);
+  padding-right: tokens.space-var(lg);
+}
+
+.main-content {
+  flex: 1 1 auto;
+  padding-top: tokens.space-var(xl);
+  padding-bottom: tokens.space-var(xxl);
+}
+
+.section-header {
+  margin-bottom: tokens.space-var(xl);
+  display: grid;
+  gap: tokens.space-var(xs);
+}
+
+.section-header p {
+  color: tokens.color-var(muted);
+  max-width: 60ch;
+}
+
+.card {
+  background: tokens.color-var(card);
+  border: 1px solid tokens.color-var(border);
+  border-radius: tokens.radius-var(md);
+  padding: tokens.space-var(md) tokens.space-var(lg);
+  box-shadow: tokens.shadow-var(sm);
+  margin-bottom: tokens.space-var(xl);
+}
+
+.card h2,
+.card h3 {
+  color: tokens.color-var(brand);
+}
+
+.bullets {
+  margin: tokens.space-var(sm) 0 0 tokens.space-var(md);
+  padding-left: tokens.space-var(sm);
+  list-style: disc;
+  color: tokens.color-var(text);
+}
+
+.bullets li {
+  margin-bottom: tokens.space-var(xxs);
+  line-height: var(--lh-base);
+}
+
+.info-grid {
+  display: grid;
+  gap: tokens.space-var(lg);
+  margin: tokens.space-var(xl) 0;
+  grid-template-columns: 1fr;
+}
+
+.note {
+  background: tokens.color-var(note);
+}
+
+.exercise {
+  background: tokens.color-var(exercise);
+}
+
+.contact-section {
+  margin-top: tokens.space-var(xl);
+  text-align: center;
+}
+
+.contact-section .btn {
+  margin-top: tokens.space-var(xs);
+}
+
+.contact-section__helper {
+  color: tokens.color-var(muted);
+  font-size: tokens.font-size-var(small);
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: tokens.space-var(xl) tokens.space-var(lg) tokens.space-var(xl);
+  text-align: center;
+  color: tokens.color-var(muted);
+  border-top: 1px solid tokens.color-var(border);
+  background: tokens.color-var(surface-alt);
+}
+
+.site-footer__meta {
+  font-size: tokens.font-size-var(small);
+  margin-top: tokens.space-var(xxs);
+}
+
+@media (min-width: #{tokens.breakpoint-value(md)}) {
+  .info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

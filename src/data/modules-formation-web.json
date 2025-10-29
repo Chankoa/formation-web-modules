@@ -1,0 +1,224 @@
+{
+  "modules": [
+    {
+      "id": "J1",
+      "day": "Day 1",
+      "title": { "fr": "Introduction – Les étapes d’un projet web", "en": "Introduction – The stages of a web project" },
+      "objectives": { "fr": "Comprendre le fonctionnement global d’un projet web et les rôles associés.", "en": "Understand the overall structure of a web project and the roles involved." },
+      "content": {
+        "fr": "Avant d’entrer dans le code, il est essentiel de comprendre le fonctionnement global d’un projet web. Ce module présente le cycle de vie d’un site : de l’idée à la mise en ligne. Les stagiaires découvrent les rôles-clés et les grandes étapes : analyse du besoin, conception, design, développement et maintenance.",
+        "en": "Before writing any code, it’s essential to understand how a web project works. This module introduces the website lifecycle, from idea to launch. Learners discover key roles and stages: needs analysis, design, development, deployment, and maintenance."
+      },
+      "keyConcepts": { "fr": ["Cycle de vie du projet", "Rôles dans une équipe web", "Analyse du besoin"], "en": ["Project lifecycle", "Web team roles", "Needs analysis"] },
+      "activities": { "fr": "Recherche et analyse de sites web inspirants.", "en": "Research and analysis of inspiring websites." },
+      "resources": ["Firefox", "VS Code", "Figma"],
+      "deliverables": { "fr": "Fiche d’analyse collective.", "en": "Collaborative analysis report." },
+      "skills": { "fr": "Identifier les composantes d’un projet web.", "en": "Identify the key components of a web project." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["formation web", "HTML", "CSS", "WordPress", "UX"],
+      "codeExample": {
+        "lang": "json",
+        "title": "Exemple : structure d’un projet web",
+        "content": "{\n  \"project\": \"MonSite\",\n  \"structure\": {\n    \"index.html\": \"Accueil\",\n    \"css/\": [\"style.css\"],\n    \"js/\": [\"script.js\"],\n    \"images/\": []\n  }\n}"
+      }
+    },
+    {
+      "id": "J2",
+      "day": "Day 2",
+      "title": { "fr": "HTML & Structure", "en": "HTML & Structure" },
+      "objectives": { "fr": "Apprendre à structurer une page web avec HTML5.", "en": "Learn to structure a web page using HTML5." },
+      "content": {
+        "fr": "Ce module introduit les fondamentaux du HTML5 et la logique de structuration du contenu. Les stagiaires apprennent à organiser une page web selon une hiérarchie claire : balises sémantiques, en-têtes, sections, articles, liens et images.",
+        "en": "This module introduces HTML5 fundamentals and the logic of structured content. Students learn to organize a webpage with a clear hierarchy: semantic tags, headers, sections, links, and images."
+      },
+      "keyConcepts": { "fr": ["Balises sémantiques", "Structure head/body", "Accessibilité"], "en": ["Semantic tags", "Head/body structure", "Accessibility"] },
+      "activities": { "fr": "Création d’une page portfolio structurée avec header, main et footer.", "en": "Create a structured portfolio page using header, main, and footer." },
+      "resources": ["VS Code", "GitHub", "Chrome DevTools"],
+      "deliverables": { "fr": "Fichier index.html correctement structuré.", "en": "Properly structured index.html file." },
+      "skills": { "fr": "Structurer une page web en respectant la sémantique HTML5.", "en": "Structure a web page following HTML5 semantic standards." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["HTML", "structure", "accessibility"],
+      "codeExample": {
+        "lang": "html",
+        "title": "Exemple : squelette HTML5 sémantique",
+        "content": "<!DOCTYPE html>\\n<html lang='fr'>\\n  <head>\\n    <meta charset='utf-8'>\\n    <title>Portfolio</title>\\n  </head>\\n  <body>\\n    <header>\\n      <h1>Mon portfolio</h1>\\n    </header>\\n    <main>\\n      <section>\\n        <h2>Projets récents</h2>\\n        <article>\\n          <h3>Site vitrine</h3>\\n          <p>Création d’un site d’entreprise.</p>\\n        </article>\\n      </section>\\n    </main>\\n    <footer>\\n      <p>© 2025 - Tous droits réservés</p>\\n    </footer>\\n  </body>\\n</html>"
+      }
+    },
+    {
+      "id": "J3",
+      "day": "Day 3",
+      "title": { "fr": "HTML / CSS – Mise en forme", "en": "HTML / CSS – Styling" },
+      "objectives": { "fr": "Apprendre à styliser le contenu d’une page HTML avec CSS.", "en": "Learn to style a web page using CSS." },
+      "content": {
+        "fr": "Après la structure, place au style. Le module HTML / CSS permet de transformer une page brute en une mise en forme harmonieuse et lisible. Les stagiaires apprennent à manipuler les sélecteurs, gérer la typographie, les couleurs et la hiérarchie visuelle.",
+        "en": "After structure comes style. The HTML/CSS module teaches how to turn a raw page into a clean and readable layout. Students learn to use selectors, manage typography, colors, and visual hierarchy."
+      },
+      "keyConcepts": { "fr": ["Sélecteurs CSS", "Typographie", "Couleurs"], "en": ["CSS selectors", "Typography", "Colors"] },
+      "activities": { "fr": "Appliquer des styles typographiques à une page existante.", "en": "Apply typographic styles to an existing page." },
+      "resources": ["Google Fonts", "VS Code"],
+      "deliverables": { "fr": "Fichier style.css fonctionnel.", "en": "Functional style.css file." },
+      "skills": { "fr": "Appliquer les règles de mise en forme et de typographie avec CSS.", "en": "Apply styling and typography rules using CSS." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["CSS", "typography", "design"],
+      "codeExample": {
+        "lang": "css",
+        "title": "Exemple : stylisation du texte et des liens",
+        "content": "body {\\n  font-family: 'Inter', sans-serif;\\n  color: #222;\\n  background-color: #fafafa;\\n}\\n\\nh1 {\\n  color: #2a324b;\\n  text-transform: uppercase;\\n  letter-spacing: 2px;\\n}\\n\\na {\\n  color: #ff7b00;\\n  text-decoration: none;\\n}\\n\\na:hover {\\n  text-decoration: underline;\\n}"
+      }
+    },
+    {
+      "id": "J4",
+      "day": "Day 4",
+      "title": { "fr": "CSS Layout", "en": "CSS Layout" },
+      "objectives": { "fr": "Construire des mises en page fluides et adaptatives.", "en": "Build fluid and adaptive web layouts." },
+      "content": {
+        "fr": "Les stagiaires découvrent comment disposer les éléments d’une page de manière fluide et responsive. Le module aborde le modèle de boîte, les systèmes de positionnement (flexbox, grid) et la logique du design adaptatif.",
+        "en": "Students learn to arrange page elements fluidly and responsively. The module covers the box model, positioning systems (flexbox, grid), and adaptive design logic."
+      },
+      "keyConcepts": { "fr": ["Modèle de boîte", "Flexbox", "Grid"], "en": ["Box model", "Flexbox", "Grid"] },
+      "activities": { "fr": "Reproduire une maquette responsive simple.", "en": "Recreate a simple responsive mockup." },
+      "resources": ["VS Code", "CodePen", "Figma"],
+      "deliverables": { "fr": "Page structurée avec flex et grid.", "en": "Page structured using flex and grid." },
+      "skills": { "fr": "Construire une mise en page responsive à l’aide du modèle de boîte, Flexbox et Grid.", "en": "Build responsive layouts using the box model, Flexbox, and Grid." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["CSS", "layout", "flexbox", "grid"],
+      "codeExample": {
+        "lang": "css",
+        "title": "Exemple : mise en page en grille (Grid)",
+        "content": ".container {\\n  display: grid;\\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\\n  gap: 20px;\\n}\\n\\n.card {\\n  background: white;\\n  border-radius: 12px;\\n  padding: 16px;\\n  box-shadow: 0 2px 5px rgba(0,0,0,0.1);\\n}"
+      }
+    },
+    {
+      "id": "J5",
+      "day": "Day 5",
+      "title": { "fr": "Responsive Design", "en": "Responsive Design" },
+      "objectives": { "fr": "Adapter un site web à différents écrans.", "en": "Adapt a website to different screens." },
+      "content": {
+        "fr": "Ce module poursuit la construction du site initiée en HTML/CSS en intégrant la dimension responsive. Les stagiaires apprennent à utiliser les media queries, les unités relatives et à tester leur rendu sur différents écrans.",
+        "en": "This module builds on previous HTML/CSS work, introducing the responsive dimension. Students learn to use media queries, relative units, and test layouts across devices."
+      },
+      "keyConcepts": { "fr": ["Media queries", "Unités relatives", "Mobile first"], "en": ["Media queries", "Relative units", "Mobile first"] },
+      "activities": { "fr": "Adapter la page pour smartphone et tablette.", "en": "Adapt the page for smartphones and tablets." },
+      "resources": ["Chrome DevTools"],
+      "deliverables": { "fr": "Site web responsive validé.", "en": "Validated responsive website." },
+      "skills": { "fr": "Adapter une interface à différents écrans via les media queries et les bonnes pratiques RWD.", "en": "Adapt interfaces for multiple screens using media queries and RWD best practices." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["responsive", "mobile first", "CSS"],
+      "codeExample": {
+        "lang": "css",
+        "title": "Exemple : media queries pour mobile",
+        "content": "@media (max-width: 768px) {\\n  nav ul {\\n    flex-direction: column;\\n    align-items: center;\\n  }\\n\\n  .hero img {\\n    width: 100%;\\n    height: auto;\\n  }\\n}"
+      }
+    },
+    {
+      "id": "J6",
+      "day": "Day 6",
+      "title": { "fr": "UX / UI Design", "en": "UX / UI Design" },
+      "objectives": { "fr": "Découvrir les principes de conception centrée utilisateur et d’ergonomie web.", "en": "Discover user-centered design and web ergonomics principles." },
+      "content": {
+        "fr": "Ce module explore la dimension la plus humaine du web : la rencontre entre l’utilisateur et l’interface. À travers des études de cas, les stagiaires découvrent les fondamentaux de l’ergonomie, la hiérarchie visuelle et le parcours utilisateur. Ils réalisent un zoning et un wireframe sur Figma, en intégrant la notion d’intention et de clarté du message.",
+        "en": "This module explores the human side of the web: the meeting point between users and interfaces. Through case studies, students learn the fundamentals of ergonomics, visual hierarchy, and user journeys. They create a zoning map and a wireframe in Figma, focusing on clarity and intent."
+      },
+      "keyConcepts": { "fr": ["Ergonomie", "Parcours utilisateur", "Wireframe", "Zoning"], "en": ["Ergonomics", "User journey", "Wireframe", "Zoning"] },
+      "activities": { "fr": "Création d’un zoning et d’un wireframe sur Figma.", "en": "Create a zoning map and wireframe using Figma." },
+      "resources": ["Figma", "Miro"],
+      "deliverables": { "fr": "Wireframe annoté présentant les parcours utilisateur.", "en": "Annotated wireframe showing user paths." },
+      "skills": { "fr": "Concevoir une interface centrée utilisateur intégrant ergonomie et parcours de navigation.", "en": "Design user-centered interfaces integrating ergonomics and navigation flow." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["UX", "UI", "design", "figma"],
+      "codeExample": {
+        "lang": "html",
+        "title": "Exemple : formulaire accessible",
+        "content": "<form aria-label='Formulaire de contact'>\\n  <label for='name'>Nom</label>\\n  <input id='name' type='text' required>\\n\\n  <label for='email'>Email</label>\\n  <input id='email' type='email' required>\\n\\n  <label for='message'>Message</label>\\n  <textarea id='message'></textarea>\\n\\n  <button type='submit'>Envoyer</button>\\n</form>"
+      }
+    },
+    {
+      "id": "J7",
+      "day": "Day 7",
+      "title": { "fr": "Éco-conception", "en": "Eco-design" },
+      "objectives": { "fr": "Apprendre à concevoir un site performant et respectueux de l’environnement.", "en": "Learn to design a high-performance and environmentally friendly website." },
+      "content": {
+        "fr": "Le web a aussi un impact environnemental. Ce module invite à réfléchir à la sobriété numérique et à la performance des sites. Les stagiaires apprennent à mesurer l’impact énergétique d’une page, à optimiser le poids des images et du code, et à adopter des pratiques de conception éco-responsables.",
+        "en": "The web has an environmental impact too. This module encourages reflection on digital sobriety and site performance. Learners measure the energy impact of a page, optimize media and code weight, and adopt eco-friendly design practices."
+      },
+      "keyConcepts": { "fr": ["Performance", "Sobriété numérique", "Green IT"], "en": ["Performance", "Digital sobriety", "Green IT"] },
+      "activities": { "fr": "Audit de performance et optimisation des images d’un site.", "en": "Perform a performance audit and optimize a site’s images." },
+      "resources": ["Lighthouse", "TinyPNG"],
+      "deliverables": { "fr": "Mini-site optimisé en performance et accessibilité.", "en": "Optimized mini-site for performance and accessibility." },
+      "skills": { "fr": "Mettre en œuvre les principes d’éco-conception pour réduire l’impact environnemental d’un site.", "en": "Apply eco-design principles to reduce a website’s environmental impact." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["eco design", "performance", "green it"],
+      "codeExample": {
+        "lang": "html",
+        "title": "Exemple : image optimisée avec <picture>",
+        "content": "<picture>\\n  <source srcset='image.webp' type='image/webp'>\\n  <img src='image.jpg' alt='Vue du Verdon' width='600' height='400' loading='lazy'>\\n</picture>"
+      }
+    },
+    {
+      "id": "J8",
+      "day": "Day 8",
+      "title": { "fr": "WordPress (1) – Installation", "en": "WordPress (1) – Installation" },
+      "objectives": { "fr": "Installer et configurer WordPress en environnement local.", "en": "Install and configure WordPress in a local environment." },
+      "content": {
+        "fr": "Premiers pas avec WordPress. Ce module présente le fonctionnement d’un CMS et sa logique de gestion de contenu. Les stagiaires installent WordPress en local, découvrent l’interface d’administration et créent leurs premières pages et articles.",
+        "en": "First steps with WordPress. This module presents how a CMS works and its content management logic. Students install WordPress locally, explore the admin interface, and create their first pages and posts."
+      },
+      "keyConcepts": { "fr": ["CMS", "Pages et articles", "Interface admin"], "en": ["CMS", "Pages and posts", "Admin interface"] },
+      "activities": { "fr": "Installation locale de WordPress et création d’un premier site vitrine.", "en": "Install WordPress locally and build your first showcase site." },
+      "resources": ["Local WP"],
+      "deliverables": { "fr": "Site WordPress local fonctionnel.", "en": "Functional local WordPress site." },
+      "skills": { "fr": "Installer et configurer un CMS WordPress en environnement local.", "en": "Install and configure a WordPress CMS locally." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["wordpress", "cms", "localwp"],
+      "codeExample": {
+        "lang": "php",
+        "title": "Exemple : affichage du contenu d’un article",
+        "content": "<?php get_header(); ?>\\n  <main>\\n    <h1><?php the_title(); ?></h1>\\n    <div><?php the_content(); ?></div>\\n  </main>\\n<?php get_footer(); ?>"
+      }
+    },
+    {
+      "id": "J9",
+      "day": "Day 9",
+      "title": { "fr": "WordPress (2) – Personnalisation", "en": "WordPress (2) – Customization" },
+      "objectives": { "fr": "Personnaliser l’apparence et les fonctionnalités d’un site WordPress.", "en": "Customize the appearance and functionality of a WordPress site." },
+      "content": {
+        "fr": "La deuxième étape WordPress se concentre sur la personnalisation. À partir du thème Kadence, les stagiaires apprennent à ajuster l’apparence d’un site, à créer des menus, des modèles de pages et à manipuler les blocs Gutenberg.",
+        "en": "The second WordPress step focuses on customization. Using the Kadence theme, students adjust a site’s appearance, create menus and page templates, and work with Gutenberg blocks."
+      },
+      "keyConcepts": { "fr": ["Thème Kadence", "Blocs Gutenberg", "Menus"], "en": ["Kadence theme", "Gutenberg blocks", "Menus"] },
+      "activities": { "fr": "Personnaliser un thème et configurer les menus de navigation.", "en": "Customize a theme and configure navigation menus." },
+      "resources": ["WordPress Admin", "Kadence Theme"],
+      "deliverables": { "fr": "Site vitrine personnalisé complet.", "en": "Fully customized showcase site." },
+      "skills": { "fr": "Personnaliser un site WordPress pour répondre à un cahier des charges.", "en": "Customize a WordPress site to meet specific project needs." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["wordpress", "kadence", "customization"],
+      "codeExample": {
+        "lang": "php",
+        "title": "Exemple : création d’un menu personnalisé",
+        "content": "<?php\\nwp_nav_menu(array(\\n  'theme_location' => 'main_menu',\\n  'container' => 'nav',\\n  'menu_class' => 'main-nav'\\n));\\n?>"
+      }
+    },
+    {
+      "id": "J10",
+      "day": "Day 10",
+      "title": { "fr": "WordPress (3) – SEO et mise en ligne", "en": "WordPress (3) – SEO and Deployment" },
+      "objectives": { "fr": "Optimiser le référencement naturel et publier un site WordPress en ligne.", "en": "Optimize SEO and deploy a WordPress site online." },
+      "content": {
+        "fr": "Dernière étape du parcours : la mise en ligne. Les stagiaires découvrent les bases du référencement naturel (SEO), la configuration des extensions (RankMath, Autoptimize) et la sauvegarde de leur site. Ils apprennent à exporter, migrer et publier un site sur un hébergeur ou sur Netlify.",
+        "en": "The final step: deployment. Students discover the basics of SEO, configure plugins (RankMath, Autoptimize), and back up their site. They learn to export, migrate, and publish a website on a host or Netlify."
+      },
+      "keyConcepts": { "fr": ["SEO", "Extensions", "Sauvegarde", "Migration"], "en": ["SEO", "Plugins", "Backup", "Migration"] },
+      "activities": { "fr": "Configurer RankMath et publier le site sur un hébergeur.", "en": "Configure RankMath and publish the site to a host." },
+      "resources": ["RankMath", "Netlify"],
+      "deliverables": { "fr": "Site WordPress en ligne et optimisé.", "en": "Published and optimized WordPress website." },
+      "skills": { "fr": "Préparer la mise en ligne et optimiser le référencement naturel d’un site.", "en": "Prepare deployment and optimize a website for SEO." },
+      "duration": "7h (3h théorie + 4h pratique)",
+      "tags": ["seo", "wordpress", "netlify"],
+      "codeExample": {
+        "lang": "html",
+        "title": "Exemple : balises meta SEO",
+        "content": "<head>\\n  <meta name='description' content='Site vitrine de démonstration WordPress'>\\n  <meta name='robots' content='index, follow'>\\n  <meta property='og:title' content='Mon site WordPress'>\\n  <meta property='og:image' content='cover.jpg'>\\n</head>"
+      }
+    }
+  ]
+}
