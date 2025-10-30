@@ -1,0 +1,7 @@
+feat: polish module and homepage experience
+
+- add scroll-to-top helper so navigation resets to the page start
+- refactor module highlights and remove legacy supports section
+- update module data code samples and integrate explorer metadata
+- fix hero buttons and module list stacking on small screens
+- rebuild compiled styles and drop unused legacy css
