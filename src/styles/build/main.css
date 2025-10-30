@@ -680,6 +680,8 @@ code {
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   letter-spacing: 0.02em;
   text-transform: none;
+  color: var(--color-accent);
+  transition: color var(--transition);
 }
 
 .logo__text-primary {
@@ -689,6 +691,11 @@ code {
 .logo__text-secondary {
   font-weight: 300;
   opacity: 0.9;
+}
+
+.logo:hover .logo__text,
+.logo:focus-visible .logo__text {
+  color: var(--color-link-hover);
 }
 
 .site-header__actions {
@@ -791,6 +798,35 @@ code {
   height: 100%;
   gap: var(--space-xl);
   padding: var(--space-xxl) var(--space-lg) var(--space-lg);
+}
+
+.site-nav__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-nav__title {
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+.site-nav__close {
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  line-height: 1;
+  padding: var(--space-xxs);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.site-nav__close:hover,
+.site-nav__close:focus-visible {
+  color: var(--color-accent);
 }
 
 .site-nav__list {
@@ -903,6 +939,14 @@ code {
   height: 1.1rem;
 }
 
+.theme-toggle--inline {
+  display: inline-flex;
+}
+
+.theme-toggle--nav {
+  display: none;
+}
+
 html[data-theme=dark] .site-nav {
   background: var(--color-surface-dark);
   border-color: var(--color-border-dark);
@@ -934,6 +978,14 @@ html[data-theme=dark] .theme-toggle:hover {
   color: var(--color-accent);
 }
 
+@media (max-width: 991px) {
+  .site-header {
+    padding: var(--space-md) var(--space-md) var(--space-xs);
+  }
+  .site-nav__content {
+    padding-top: var(--space-xl);
+  }
+}
 @media (min-width: 992px) {
   .site-header__actions {
     gap: var(--space-lg);
@@ -958,6 +1010,10 @@ html[data-theme=dark] .theme-toggle:hover {
     padding: 0;
     height: auto;
   }
+  .site-nav__top,
+  .site-nav__close {
+    display: none;
+  }
   .site-nav__list {
     display: flex;
     align-items: center;
@@ -975,6 +1031,14 @@ html[data-theme=dark] .theme-toggle:hover {
   }
   .site-nav__overlay {
     display: none;
+  }
+}
+@media (min-width: 992px) {
+  .theme-toggle--inline {
+    display: none;
+  }
+  .theme-toggle--nav {
+    display: inline-flex;
   }
 }
 .btn {
@@ -1443,7 +1507,15 @@ html[data-theme=dark] .btn-secondary:hover {
 
 .module-hero__inner {
   display: grid;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+}
+
+.home-hero__eyebrow {
+  grid-area: eyebrow;
+}
+
+.home-hero__inner > h1 {
+  grid-area: title;
 }
 
 .module-hero__back {
@@ -1456,10 +1528,12 @@ html[data-theme=dark] .btn-secondary:hover {
 .module-hero__meta {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
   gap: var(--space-xs);
+  row-gap: var(--space-xxs);
   color: var(--color-muted);
   font-size: var(--fs-small);
-  margin-top: var(--space-xs);
 }
 
 .module-hero__badge {
@@ -1499,13 +1573,13 @@ html[data-theme=dark] .btn-secondary:hover {
   font-size: var(--fs-lead);
   color: var(--color-muted);
   max-width: 70ch;
+  margin: 0;
 }
 
 .module-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
-  margin-top: var(--space-sm);
 }
 
 .module-hero__details {
@@ -1540,10 +1614,45 @@ html[data-theme=dark] .btn-secondary:hover {
   flex-wrap: wrap;
   gap: var(--space-xs);
   padding: 0;
-  margin: var(--space-sm) 0 0;
+  margin: 0;
   list-style: none;
 }
 
+@media (min-width: 768px) {
+  .module-hero__inner {
+    gap: var(--space-lg);
+  }
+}
+@media (min-width: 992px) {
+  .module-hero__inner {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+    column-gap: var(--space-xl);
+  }
+  .module-hero__back {
+    grid-column: 1/-1;
+    justify-self: start;
+  }
+  .module-hero__title,
+  .module-hero__objective,
+  .module-hero__actions,
+  .module-hero__tags {
+    grid-column: 1/span 7;
+  }
+  .module-hero__meta {
+    grid-column: 8/-1;
+    align-self: start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  .module-hero__actions {
+    justify-content: flex-start;
+  }
+  .module-hero__tags {
+    align-self: start;
+  }
+}
 .module-body {
   display: grid;
   gap: var(--space-lg);
@@ -1900,7 +2009,8 @@ html[data-theme=dark] .module-outcome {
 }
 
 .home-hero__inner {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-md);
 }
 
@@ -1910,11 +2020,19 @@ html[data-theme=dark] .module-outcome {
   text-transform: uppercase;
   color: var(--color-muted);
   font-weight: 500;
+  grid-area: eyebrow;
+}
+
+.home-hero__inner > h1 {
+  grid-area: title;
 }
 
 .home-hero__intro {
+  display: grid;
+  gap: var(--space-sm);
   max-width: 70ch;
   color: var(--color-muted);
+  grid-area: intro;
 }
 
 .home-hero__highlights {
@@ -1924,6 +2042,7 @@ html[data-theme=dark] .module-outcome {
   display: grid;
   gap: var(--space-xs);
   color: var(--color-text);
+  grid-area: highlights;
 }
 
 .home-hero__highlights li {
@@ -1934,14 +2053,15 @@ html[data-theme=dark] .module-outcome {
 
 .home-hero__highlights li::before {
   content: "";
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--color-accent);
   opacity: 0.85;
 }
 
 .home-hero__actions {
+  grid-area: actions;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -1954,6 +2074,7 @@ html[data-theme=dark] .module-outcome {
 }
 
 .home-hero__meta {
+  grid-area: meta;
   display: grid;
   gap: var(--space-sm);
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -2133,18 +2254,13 @@ html[data-theme=dark] .home-section--alt {
 }
 @media (min-width: 992px) {
   .home-hero__inner {
+    display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-  .home-hero__eyebrow,
-  .home-hero__intro,
-  .home-hero__highlights,
-  .home-hero__actions,
-  .home-hero__inner > h1 {
-    grid-column: 1/span 7;
+    grid-template-areas: "eyebrow eyebrow eyebrow eyebrow eyebrow eyebrow meta meta meta meta meta meta" "title title title title title title meta meta meta meta meta meta" "intro intro intro intro intro intro meta meta meta meta meta meta" "highlights highlights highlights highlights highlights highlights meta meta meta meta meta meta" "actions actions actions actions actions actions meta meta meta meta meta meta";
+    align-items: start;
   }
   .home-hero__meta {
-    grid-column: 8/-1;
-    align-self: stretch;
+    align-self: start;
   }
   .home-hero__stat {
     height: 100%;

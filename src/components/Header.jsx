@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
+import defaultLogo from "../assets/learnit-logo.svg";
 
 const anchorLinks = [
   { id: "intro", label: "Introduction" },
@@ -58,7 +59,7 @@ function MoonIcon() {
 export default function Header({
   logoSrc,
   logoAlt = "LEARNIT",
-  title = "LEARNIT",
+  title,
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(() => {
@@ -177,6 +178,44 @@ export default function Header({
     setMenuOpen((prev) => !prev);
   };
 
+  const ThemeToggleButton = ({ className = "", autoClose = false }) => (
+    <button
+      className={['theme-toggle', className].filter(Boolean).join(' ')}
+      type="button"
+      onClick={() => {
+        toggleTheme();
+        if (autoClose && !isDesktop) {
+          closeMenu();
+        }
+      }}
+      aria-label={
+        theme === "dark"
+          ? "Activer le mode clair"
+          : "Activer le mode sombre"
+      }
+      aria-pressed={theme === "dark"}
+    >
+      <span className="theme-toggle__icon" aria-hidden="true">
+        {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+      </span>
+      <span className="sr-only">
+        {theme === "dark"
+          ? "Activer le mode clair"
+          : "Activer le mode sombre"}
+      </span>
+    </button>
+  );
+
+  const titleContent =
+    title ?? (
+      <>
+  <span className="logo__text-primary is-bold">LEARN</span>
+  <span className="logo__text-secondary">IT</span>
+      </>
+    );
+
+  const resolvedLogo = logoSrc ?? defaultLogo;
+
   return (
     <header className="site-header" id="top">
       <div className="container site-header__inner">
@@ -187,14 +226,15 @@ export default function Header({
             aria-label="Retour à l'accueil"
             onClick={closeMenu}
           >
-            {logoSrc ? (
-              <img src={logoSrc} alt={logoAlt} className="logo__image" />
+            {resolvedLogo ? (
+              <img src={resolvedLogo} alt={logoAlt} className="logo__image" />
             ) : null}
-            <span className="logo__text">{title}</span>
+            <span className="logo__text">{titleContent}</span>
           </Link>
         </div>
 
         <div className="site-header__actions">
+          <ThemeToggleButton className="theme-toggle--inline" />
           <nav
             ref={navRef}
             className={navClassName}
@@ -203,6 +243,18 @@ export default function Header({
             aria-hidden={navAriaHidden}
           >
             <div className="site-nav__content">
+              <div className="site-nav__top">
+                <span className="site-nav__title">Navigation</span>
+                <button
+                  type="button"
+                  className="site-nav__close"
+                  onClick={closeMenu}
+                  aria-label="Fermer le menu"
+                >
+                  <span aria-hidden="true">×</span>
+                  <span className="sr-only">Fermer le menu</span>
+                </button>
+              </div>
               <ul className="site-nav__list">
                 {navItems.map((item) => {
                   if (item.type === "anchor") {
@@ -231,31 +283,10 @@ export default function Header({
                 })}
               </ul>
               <div className="site-nav__footer">
-                <button
-                  className="theme-toggle"
-                  type="button"
-                  onClick={() => {
-                    toggleTheme();
-                    if (!isDesktop) {
-                      closeMenu();
-                    }
-                  }}
-                  aria-label={
-                    theme === "dark"
-                      ? "Activer le mode clair"
-                      : "Activer le mode sombre"
-                  }
-                  aria-pressed={theme === "dark"}
-                >
-                  <span className="theme-toggle__icon" aria-hidden="true">
-                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-                  </span>
-                  <span className="sr-only">
-                    {theme === "dark"
-                      ? "Activer le mode clair"
-                      : "Activer le mode sombre"}
-                  </span>
-                </button>
+                <ThemeToggleButton
+                  className="theme-toggle--nav"
+                  autoClose
+                />
               </div>
             </div>
           </nav>

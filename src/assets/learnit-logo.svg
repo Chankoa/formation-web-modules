@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Logo Learn It">
+  <style>
+    svg {
+      width: 100%;
+      height: auto;
+      max-width: 128px;
+      background: transparent;
+      border-radius: 24%;
+      transition: background 0.3s ease;
+    }
+
+    .mark {
+      fill: none;
+      stroke: var(--color-accent, #e03a58);
+      stroke-width: 4.5; /* affiné pour un rendu plus fin et moderne */
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s ease;
+    }
+
+    .dot {
+      fill: var(--color-accent, #e03a58);
+      transition: fill 0.3s ease;
+    }
+
+
+  </style>
+
+  <!-- Lettre N équilibrée -->
+  <path class="mark" d="M42 88V40l28 48V40" />
+  <!-- Point final -->
+  <circle class="dot" cx="92" cy="92" r="5" />
+</svg>

@@ -7,13 +7,13 @@ import DashboardPage from "./pages/DashboardPage";
 import ScrollToTop from "./components/ScrollToTop";
 // import "./styles/main.scss";
 import "./styles/build/main.css";
-import brandLogo from "./assets/react.svg";
+import brandLogo from "./assets/learnit-logo.svg";
 
 function App() {
   return (
     <div className="app">
       <ScrollToTop />
-      <Header logoSrc={brandLogo} logoAlt="Formation Création Web" />
+  <Header logoSrc={brandLogo} logoAlt="Formation Création Web" />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/modules/:moduleId" element={<ModulePage />} />
