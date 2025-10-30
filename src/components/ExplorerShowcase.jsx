@@ -85,7 +85,7 @@ export default function ExplorerShowcase() {
           <span className="win-title">Éditeur de code</span>
         </div>
 
-        <div className="code-columns">
+        <div className="code-columns code-columns--grid">
           {codeSamples.map((sample) => (
             <CodeHighlight key={sample.id} {...sample} />
           ))}

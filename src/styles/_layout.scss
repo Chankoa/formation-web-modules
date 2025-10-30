@@ -22,6 +22,11 @@
   padding-bottom: tokens.space-var(xxl);
 }
 
+.home-page {
+  flex: 1 1 auto;
+  background: tokens.color-var(bg);
+}
+
 .section-header {
   margin-bottom: tokens.space-var(xl);
   display: grid;

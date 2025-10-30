@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="site-footer">
       <p>Formation Création Web — Modules, cours et chapitres</p>
       <p className="site-footer__meta">
-        © {new Date().getFullYear()} — Manifesto Pedagogy. Design system inspiré
+        © {new Date().getFullYear()} — Chandra Pedagogy. Design system inspiré
         par VS Code, adapté en React & Sass.
       </p>
     </footer>

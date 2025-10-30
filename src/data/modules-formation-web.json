@@ -19,7 +19,7 @@
       "codeExample": {
         "lang": "json",
         "title": "Exemple : structure d’un projet web",
-        "content": "{\n  \"project\": \"MonSite\",\n  \"structure\": {\n    \"index.html\": \"Accueil\",\n    \"css/\": [\"style.css\"],\n    \"js/\": [\"script.js\"],\n    \"images/\": []\n  }\n}"
+        "content": "{\n  \"project\": \"MonSite\",\n  \"structure\": {\n    \"index.html\": \"Accueil\",\n    \"css\": [\"style.css\"],\n    \"js\": [\"script.js\"],\n    \"assets\": {\n      \"images\": [],\n      \"fonts\": []\n    }\n  }\n}"
       }
     },
     {
@@ -41,7 +41,7 @@
       "codeExample": {
         "lang": "html",
         "title": "Exemple : squelette HTML5 sémantique",
-        "content": "<!DOCTYPE html>\\n<html lang='fr'>\\n  <head>\\n    <meta charset='utf-8'>\\n    <title>Portfolio</title>\\n  </head>\\n  <body>\\n    <header>\\n      <h1>Mon portfolio</h1>\\n    </header>\\n    <main>\\n      <section>\\n        <h2>Projets récents</h2>\\n        <article>\\n          <h3>Site vitrine</h3>\\n          <p>Création d’un site d’entreprise.</p>\\n        </article>\\n      </section>\\n    </main>\\n    <footer>\\n      <p>© 2025 - Tous droits réservés</p>\\n    </footer>\\n  </body>\\n</html>"
+        "content": "<!DOCTYPE html>\n<html lang=\"fr\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <title>Portfolio</title>\n  </head>\n  <body>\n    <header>\n      <h1>Mon portfolio</h1>\n    </header>\n    <main>\n      <section>\n        <h2>Projets récents</h2>\n        <article>\n          <h3>Site vitrine</h3>\n          <p>Création d’un site d’entreprise.</p>\n        </article>\n      </section>\n    </main>\n    <footer>\n      <p>© 2025 - Tous droits réservés</p>\n    </footer>\n  </body>\n</html>"
       }
     },
     {
@@ -63,7 +63,7 @@
       "codeExample": {
         "lang": "css",
         "title": "Exemple : stylisation du texte et des liens",
-        "content": "body {\\n  font-family: 'Inter', sans-serif;\\n  color: #222;\\n  background-color: #fafafa;\\n}\\n\\nh1 {\\n  color: #2a324b;\\n  text-transform: uppercase;\\n  letter-spacing: 2px;\\n}\\n\\na {\\n  color: #ff7b00;\\n  text-decoration: none;\\n}\\n\\na:hover {\\n  text-decoration: underline;\\n}"
+        "content": "body {\n  font-family: \"Inter\", sans-serif;\n  color: #222222;\n  background-color: #fafafa;\n}\n\nh1 {\n  color: #2a324b;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n}\n\na {\n  color: #ff7b00;\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: underline;\n}"
       }
     },
     {
@@ -85,7 +85,7 @@
       "codeExample": {
         "lang": "css",
         "title": "Exemple : mise en page en grille (Grid)",
-        "content": ".container {\\n  display: grid;\\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\\n  gap: 20px;\\n}\\n\\n.card {\\n  background: white;\\n  border-radius: 12px;\\n  padding: 16px;\\n  box-shadow: 0 2px 5px rgba(0,0,0,0.1);\\n}"
+        "content": ".container {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 20px;\n}\n\n.card {\n  background: #ffffff;\n  border-radius: 12px;\n  padding: 16px;\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n}"
       }
     },
     {
@@ -107,7 +107,7 @@
       "codeExample": {
         "lang": "css",
         "title": "Exemple : media queries pour mobile",
-        "content": "@media (max-width: 768px) {\\n  nav ul {\\n    flex-direction: column;\\n    align-items: center;\\n  }\\n\\n  .hero img {\\n    width: 100%;\\n    height: auto;\\n  }\\n}"
+        "content": "@media (max-width: 768px) {\n  nav ul {\n    flex-direction: column;\n    align-items: center;\n    gap: 12px;\n  }\n\n  .hero img {\n    width: 100%;\n    height: auto;\n  }\n}"
       }
     },
     {
@@ -129,7 +129,7 @@
       "codeExample": {
         "lang": "html",
         "title": "Exemple : formulaire accessible",
-        "content": "<form aria-label='Formulaire de contact'>\\n  <label for='name'>Nom</label>\\n  <input id='name' type='text' required>\\n\\n  <label for='email'>Email</label>\\n  <input id='email' type='email' required>\\n\\n  <label for='message'>Message</label>\\n  <textarea id='message'></textarea>\\n\\n  <button type='submit'>Envoyer</button>\\n</form>"
+        "content": "<form aria-label=\"Formulaire de contact\">\n  <label for=\"name\">Nom</label>\n  <input id=\"name\" type=\"text\" required />\n\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" required />\n\n  <label for=\"message\">Message</label>\n  <textarea id=\"message\" rows=\"4\"></textarea>\n\n  <button type=\"submit\">Envoyer</button>\n</form>"
       }
     },
     {
@@ -151,7 +151,7 @@
       "codeExample": {
         "lang": "html",
         "title": "Exemple : image optimisée avec <picture>",
-        "content": "<picture>\\n  <source srcset='image.webp' type='image/webp'>\\n  <img src='image.jpg' alt='Vue du Verdon' width='600' height='400' loading='lazy'>\\n</picture>"
+        "content": "<picture>\n  <source srcset=\"image.webp\" type=\"image/webp\" />\n  <img src=\"image.jpg\" alt=\"Vue du Verdon\" width=\"600\" height=\"400\" loading=\"lazy\" />\n</picture>"
       }
     },
     {
@@ -173,7 +173,7 @@
       "codeExample": {
         "lang": "php",
         "title": "Exemple : affichage du contenu d’un article",
-        "content": "<?php get_header(); ?>\\n  <main>\\n    <h1><?php the_title(); ?></h1>\\n    <div><?php the_content(); ?></div>\\n  </main>\\n<?php get_footer(); ?>"
+        "content": "<?php\nget_header();\n?>\n<main>\n  <h1><?php the_title(); ?></h1>\n  <div><?php the_content(); ?></div>\n</main>\n<?php\nget_footer();\n?>"
       }
     },
     {
@@ -195,7 +195,7 @@
       "codeExample": {
         "lang": "php",
         "title": "Exemple : création d’un menu personnalisé",
-        "content": "<?php\\nwp_nav_menu(array(\\n  'theme_location' => 'main_menu',\\n  'container' => 'nav',\\n  'menu_class' => 'main-nav'\\n));\\n?>"
+        "content": "<?php\nwp_nav_menu(\n  array(\n    'theme_location' => 'main_menu',\n    'container'      => 'nav',\n    'menu_class'     => 'main-nav',\n  )\n);\n?>"
       }
     },
     {
@@ -217,7 +217,7 @@
       "codeExample": {
         "lang": "html",
         "title": "Exemple : balises meta SEO",
-        "content": "<head>\\n  <meta name='description' content='Site vitrine de démonstration WordPress'>\\n  <meta name='robots' content='index, follow'>\\n  <meta property='og:title' content='Mon site WordPress'>\\n  <meta property='og:image' content='cover.jpg'>\\n</head>"
+        "content": "<head>\n  <meta name=\"description\" content=\"Site vitrine de démonstration WordPress\" />\n  <meta name=\"robots\" content=\"index, follow\" />\n  <meta property=\"og:title\" content=\"Mon site WordPress\" />\n  <meta property=\"og:image\" content=\"cover.jpg\" />\n</head>"
       }
     }
   ]
