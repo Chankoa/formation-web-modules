@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charte graphique – Learn It</title>
+  <style>
+/* 🎨 Thème Learn It – Variation Teal & Amber */
+
+/* ----------------------------------------------
+   1. Variables principales
+---------------------------------------------- */
+:root {
+  /* Couleurs */
+  --teal-dark: #00897B;
+  --teal-light: #4DB6AC;
+  --amber: #FFC107;
+  --amber-light: #FFD54F;
+  --blue-grey: #607D8B;
+
+  --bg-light: #FAFAF9;
+  --bg-dark: #1C1C1C;
+  --text-main: #333333;
+  --text-secondary: #666666;
+  --text-darkmode: #EDEDED;
+
+  /* Dégradés */
+  --grad-primary: linear-gradient(135deg, #00897B, #4DB6AC);
+  --grad-warm: linear-gradient(135deg, #FFC107, #FFD54F);
+  --grad-cool: linear-gradient(135deg, #607D8B, #4DB6AC);
+
+  /* Typo */
+  --font-heading: "Manrope", "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-code: "Fira Code", monospace;
+
+  /* Divers */
+  --radius: 8px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Mode sombre */
+[data-theme='dark'] {
+  --bg-light: #101010;
+  --text-main: #EDEDED;
+  --teal-dark: #4DB6AC;
+  --amber: #FFD54F;
+  --blue-grey: #78909C;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ----------------------------------------------
+   2. Styles généraux
+---------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  margin: 0;
+  padding: 2rem;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+h1, h2 {
+  font-family: var(--font-heading);
+  text-align: center;
+  color: var(--teal-dark);
+  margin-top: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ----------------------------------------------
+   3. Palette et échantillons
+---------------------------------------------- */
+.palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.swatch {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-body);
+}
+
+.swatch span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------
+   4. Dégradés
+---------------------------------------------- */
+.gradient {
+  height: 80px;
+  width: 100%;
+  border-radius: 6px;
+  margin-top: .5rem;
+  box-shadow: var(--shadow);
+}
+
+/* ----------------------------------------------
+   5. Typographies
+---------------------------------------------- */
+.typography {
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.typography p {
+  margin: 1rem 0;
+}
+
+.typography .heading {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--teal-dark);
+}
+
+.typography .body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.typography .code {
+  font-family: var(--font-code);
+  background: var(--bg-dark);
+  color: var(--amber-light);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
+  box-shadow: var(--shadow);
+}
+
+/* ----------------------------------------------
+   6. Animation douce au survol
+---------------------------------------------- */
+.swatch:hover,
+.gradient:hover {
+  transform: translateY(-4px);
+  transition: transform 0.3s ease;
+}
+
+/* ----------------------------------------------
+   7. Exemple : fond global coloré
+---------------------------------------------- */
+header {
+  background: var(--grad-primary);
+  color: white;
+  padding: 1rem 0;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  margin: 0;
+}
+
+  </style>
+</head>
+<body>
+  <h1>🎨 Charte graphique – Learn It</h1>
+<h2>Palette principale</h2>
+<div class="palette">
+  <div class="swatch" style="background:#00897B;color:#fff;">
+    Teal profond<br><span>#00897B</span>
+  </div>
+  <div class="swatch" style="background:#4DB6AC;color:#fff;">
+    Menthe claire<br><span>#4DB6AC</span>
+  </div>
+  <div class="swatch" style="background:#FFC107;color:#000;">
+    Ambre<br><span>#FFC107</span>
+  </div>
+  <div class="swatch" style="background:#FFD54F;color:#000;">
+    Sable doré<br><span>#FFD54F</span>
+  </div>
+  <div class="swatch" style="background:#607D8B;color:#fff;">
+    Bleu-gris<br><span>#607D8B</span>
+  </div>
+  <div class="swatch" style="background:#FAFAF9;border:1px solid #ccc;">
+    Crème<br><span>#FAFAF9</span>
+  </div>
+  <div class="swatch" style="background:#1C1C1C;color:#fff;">
+    Ardoise sombre<br><span>#1C1C1C</span>
+  </div>
+</div>
+
+<h2>Dégradés</h2>
+<div class="palette">
+  <div class="swatch">
+    <div class="gradient" style="background:linear-gradient(135deg,#00897B,#4DB6AC);"></div>
+    <p>Flow primaire</p>
+  </div>
+  <div class="swatch">
+    <div class="gradient" style="background:linear-gradient(135deg,#FFC107,#FFD54F);"></div>
+    <p>Balance chaude</p>
+  </div>
+  <div class="swatch">
+    <div class="gradient" style="background:linear-gradient(135deg,#607D8B,#4DB6AC);"></div>
+    <p>Calme froid</p>
+  </div>
+</div>
+
+
+  <h2>Typographies</h2>
+  <div style="margin:2rem auto;max-width:600px;text-align:center;">
+    <p style="font-family:'Poppins',sans-serif;font-size:1.5rem;">Titre – Poppins</p>
+    <p style="font-family:'Inter',sans-serif;font-size:1rem;">Texte – Inter</p>
+    <p style="font-family:'Fira Code',monospace;background:#1E1E1E;color:#FDFBF7;padding:0.5rem;border-radius:4px;">Code – Fira Code</p>
+  </div>
+</body>
+</html>

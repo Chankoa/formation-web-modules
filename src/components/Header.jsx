@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useTheme } from "../hooks/useTheme";
+import { COLOR_SCHEMES, useTheme } from "../hooks/useTheme";
 import defaultLogo from "../assets/learnit-logo.svg";
 
 const anchorLinks = [
@@ -68,11 +68,16 @@ export default function Header({
     }
     return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
   });
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, colorScheme, setColorScheme } = useTheme();
   const location = useLocation();
   const navRef = useRef(null);
 
   const isHomePage = location.pathname === "/";
+  const sharedRoutes = [
+    { id: "dashboard", label: "Dashboard", to: "/dashboard", type: "route" },
+    { id: "content-manager", label: "Gestion contenu", to: "/admin/contenu", type: "route" },
+  ];
+
   const navItems = isHomePage
     ? [
         ...anchorLinks.map((link) => ({
@@ -81,11 +86,11 @@ export default function Header({
           href: `#${link.id}`,
           type: "anchor",
         })),
-        { id: "dashboard", label: "Dashboard", to: "/dashboard", type: "route" },
+        ...sharedRoutes,
       ]
     : [
         { id: "home", label: "Accueil", to: "/", type: "route" },
-        { id: "dashboard", label: "Dashboard", to: "/dashboard", type: "route" },
+        ...sharedRoutes,
       ];
 
   useEffect(() => {
@@ -206,6 +211,55 @@ export default function Header({
     </button>
   );
 
+  const ColorSchemeSwitch = ({ autoClose = false }) => (
+    <div className="color-scheme-switch" aria-label="Sélection de palette">
+      <span className="color-scheme-switch__label">Palette</span>
+      <div className="color-scheme-switch__options" role="radiogroup" aria-label="Sélection de palette de couleurs">
+        {COLOR_SCHEMES.map((scheme) => {
+          const optionClassName = [
+            "color-scheme-switch__option",
+            `color-scheme-switch__option--${scheme.id}`,
+          ]
+            .filter(Boolean)
+            .join(" ");
+
+          const [startColor, endColor] = Array.isArray(scheme.preview)
+            ? [scheme.preview[0], scheme.preview[1] ?? scheme.preview[0]]
+            : [undefined, undefined];
+          const swatchStyle = startColor
+            ? {
+                background: `linear-gradient(135deg, ${startColor}, ${endColor})`,
+              }
+            : undefined;
+
+          return (
+            <button
+              key={scheme.id}
+              type="button"
+              role="radio"
+              aria-checked={colorScheme === scheme.id}
+              className={optionClassName}
+              title={`Palette ${scheme.label}`}
+              onClick={() => {
+                setColorScheme(scheme.id);
+                if (autoClose && !isDesktop) {
+                  closeMenu();
+                }
+              }}
+            >
+              <span
+                className="color-scheme-switch__swatch"
+                aria-hidden="true"
+                style={swatchStyle}
+              />
+              <span className="color-scheme-switch__text">{scheme.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+
   const titleContent =
     title ?? (
       <>
@@ -283,6 +337,7 @@ export default function Header({
                 })}
               </ul>
               <div className="site-nav__footer">
+                <ColorSchemeSwitch autoClose />
                 <ThemeToggleButton
                   className="theme-toggle--nav"
                   autoClose

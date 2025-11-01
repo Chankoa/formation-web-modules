@@ -33,7 +33,7 @@ export default function HomePage() {
     <main className="home-page">
       <header className="home-hero">
         <div className="container home-hero__inner">
-          <p className="home-hero__eyebrow">Parcours création web</p>
+          <p className="home-hero__eyebrow">Création web</p>
           <h1>Une formation intensive pour lancer vos projets web avec confiance.</h1>
           <p className="home-hero__intro">
             Pendant 10 journées guidées, structurez votre démarche, concevez des interfaces convaincantes

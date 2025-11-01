@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import ModulePage from "./pages/ModulePage";
 import DashboardPage from "./pages/DashboardPage";
+import ContentManagerPage from "./pages/ContentManagerPage.jsx";
 import ScrollToTop from "./components/ScrollToTop";
 // import "./styles/main.scss";
 import "./styles/build/main.css";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/modules/:moduleId" element={<ModulePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/admin/contenu" element={<ContentManagerPage />} />
       </Routes>
       <Footer />
     </div>

@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import CodeHighlight from "../components/CodeHighlight";
-import modulesData from "../data/modules-formation-web.json";
-
-const modules = modulesData.modules;
+import { useModuleContent } from "../context/ModuleContentContext.jsx";
 
 function slugify(value) {
   if (!value) {
@@ -40,7 +38,19 @@ function buildExplorerStructure({ id, title, concepts, resources, activity, deli
   if (resources.length > 0) {
     sectionDefinitions.push({
       label: "📁 ressources/",
-      items: resources.map((resource) => `🔗 ${formatFileName(resource, "resource")}.url`),
+      items: resources.map((resource) => {
+        if (typeof resource === "string") {
+          return `🔗 ${formatFileName(resource, "resource")}.url`;
+        }
+
+        const label = resource.label
+          ?? resource.downloadFilename
+          ?? resource.url
+          ?? "resource";
+        const icon = resource.type === "pdf" ? "📄" : "🔗";
+        const extension = resource.type === "pdf" ? ".pdf" : ".url";
+        return `${icon} ${formatFileName(label, "resource")}${extension}`;
+      }),
     });
   }
 
@@ -73,6 +83,32 @@ function buildExplorerStructure({ id, title, concepts, resources, activity, deli
   });
 
   return lines.join("\n");
+}
+
+function normalizeResource(resource, index, moduleId) {
+  if (typeof resource === "string") {
+    return {
+      id: `${moduleId}-resource-${index}`,
+      label: resource,
+      type: "text",
+    };
+  }
+
+  if (!resource || typeof resource !== "object") {
+    return null;
+  }
+
+  const type = resource.type
+    ?? (resource.downloadUrl || resource.download ? "pdf" : resource.url ? "link" : "text");
+
+  return {
+    id: resource.id ?? `${moduleId}-resource-${index}`,
+    label: resource.label ?? resource.title ?? "Ressource",
+    url: resource.url ?? resource.href ?? resource.downloadUrl ?? "",
+    type,
+    description: resource.description ?? "",
+    downloadFilename: resource.downloadFilename ?? resource.filename ?? "",
+  };
 }
 
 function BookmarkIcon() {
@@ -114,27 +150,50 @@ function PencilIcon() {
   );
 }
 
-function getModuleById(id) {
+function getModuleById(collection, id) {
   if (!id) {
     return undefined;
   }
   const normalisedId = id.trim().toUpperCase();
-  return modules.find((item) => item.id.toUpperCase() === normalisedId);
+  return collection.find((item) => item.id?.toUpperCase() === normalisedId);
 }
 
 export default function ModulePage() {
   const { moduleId } = useParams();
-  const module = useMemo(() => getModuleById(moduleId), [moduleId]);
+  const { modules } = useModuleContent();
+  const moduleList = useMemo(
+    () => (Array.isArray(modules) ? modules : []),
+    [modules],
+  );
+  const module = useMemo(
+    () => getModuleById(moduleList, moduleId),
+    [moduleList, moduleId],
+  );
+
+  const moduleResourcesRaw = module?.resources;
+  const moduleIdentifier = module?.id;
+  const moduleTags = module?.tags;
+
+  const resourceItems = useMemo(() => {
+    const entries = Array.isArray(moduleResourcesRaw) ? moduleResourcesRaw : [];
+    return entries
+      .map((entry, index) => normalizeResource(entry, index, moduleIdentifier ?? "module"))
+      .filter(Boolean);
+  }, [moduleResourcesRaw, moduleIdentifier]);
+  const hasResources = resourceItems.length > 0;
+  const tagList = Array.isArray(moduleTags) ? moduleTags : [];
 
   const currentIndex = useMemo(() => {
     if (!module) {
       return -1;
     }
-    return modules.findIndex((item) => item.id === module.id);
-  }, [module]);
+    return moduleList.findIndex((item) => item.id === module.id);
+  }, [module, moduleList]);
 
-  const previousModule = currentIndex > 0 ? modules[currentIndex - 1] : undefined;
-  const nextModule = currentIndex >= 0 && currentIndex < modules.length - 1 ? modules[currentIndex + 1] : undefined;
+  const previousModule = currentIndex > 0 ? moduleList[currentIndex - 1] : undefined;
+  const nextModule = currentIndex >= 0 && currentIndex < moduleList.length - 1
+    ? moduleList[currentIndex + 1]
+    : undefined;
 
   if (!module) {
     return (
@@ -161,11 +220,9 @@ export default function ModulePage() {
     content,
     keyConcepts,
     activities,
-    resources,
     deliverables,
     skills,
     duration,
-    tags,
     codeExample,
   } = module;
 
@@ -175,8 +232,6 @@ export default function ModulePage() {
   const skillsText = skills?.fr ?? skills?.en ?? "";
   const deliverablesText = deliverables?.fr ?? deliverables?.en ?? "";
   const activitiesText = activities?.fr ?? activities?.en ?? "";
-  const tagList = Array.isArray(tags) ? tags : [];
-  const resourceList = Array.isArray(resources) ? resources : [];
 
   const learningOutcomes = [
     {
@@ -199,7 +254,7 @@ export default function ModulePage() {
     id,
     title: titleText,
     concepts: conceptList,
-    resources: resourceList,
+    resources: resourceItems,
     activity: activitiesText,
     deliverable: deliverablesText,
   });
@@ -284,21 +339,14 @@ export default function ModulePage() {
           <Link className="module-hero__back" to="/#modules">
             ← Retour aux modules
           </Link>
-          <h1 className="module-hero__title">{titleText}</h1>
-          <p className="module-hero__objective">{objectiveText}</p>
+          <p className="module-hero__eyebrow">Création web</p>
           <div className="module-hero__meta">
             <span className="module-hero__badge">{day}</span>
-            <span className="module-hero__id">{id}</span>
-            <span className="module-hero__duration">{duration}</span>
+            <span className="module-hero__id hidden">{id}</span>
+            <span className="module-hero__duration hidden">{duration}</span>
           </div>
-          <div className="module-hero__actions">
-            <a className="btn" href="#programme">
-              Commencer ce module
-            </a>
-            <a className="btn btn-secondary" href="#ressources">
-              Parcourir les ressources
-            </a>
-          </div>
+          <h1 className="module-hero__title">{titleText}</h1>
+          <p className="module-hero__objective">{objectiveText}</p>
           <ul className="module-hero__tags">
             {tagList.map((tag) => (
               <li key={tag} className="module-tag">
@@ -306,6 +354,23 @@ export default function ModulePage() {
               </li>
             ))}
           </ul>
+
+          {skillsText ? (
+            <div className="module-outcome module-hero__outcome">
+              <h3>Compétence développée</h3>
+              <p>{skillsText}</p>
+            </div>
+          ) : null}
+          <div className="module-hero__actions">
+            <a className="btn" href="#programme">
+              Commencer ce module
+            </a>
+            {hasResources ? (
+              <a className="btn btn-secondary" href="#ressources">
+                Parcourir les ressources
+              </a>
+            ) : null}
+          </div>
         </div>
       </header>
 
@@ -441,14 +506,40 @@ export default function ModulePage() {
               </ul>
             </section>
 
-            <section className="module-aside__card" id="ressources">
-              <h2>Ressources utiles</h2>
-              <ul className="module-resource-list">
-                {resourceList.map((resource) => (
-                  <li key={resource}>{resource}</li>
-                ))}
-              </ul>
-            </section>
+            {hasResources ? (
+              <section className="module-aside__card" id="ressources">
+                <h2>Outils et ressources</h2>
+                <ul className="module-resource-list">
+                  {resourceItems.map((resource) => (
+                    <li key={resource.id}>
+                      {resource.url ? (
+                        <a
+                          className="module-resource__link"
+                          href={resource.url}
+                          target={resource.type === "pdf" ? undefined : "_blank"}
+                          rel={resource.type === "pdf" ? undefined : "noreferrer"}
+                          download={resource.type === "pdf"
+                            ? resource.downloadFilename || undefined
+                            : undefined}
+                        >
+                          {resource.label}
+                          {resource.type === "pdf" ? (
+                            <span className="module-resource__badge">PDF</span>
+                          ) : null}
+                        </a>
+                      ) : (
+                        <span className="module-resource__text">{resource.label}</span>
+                      )}
+                      {resource.description ? (
+                        <span className="module-resource__description">
+                          {resource.description}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
 
             <section className="module-aside__card">
               <h2>Focus compétences</h2>
@@ -470,16 +561,22 @@ export default function ModulePage() {
       </div>
 
       <nav className="module-pagination container">
-        {previousModule ? (
-          <Link className="module-pagination__link" to={`/modules/${previousModule.id.toLowerCase()}`}>
-            ← {previousModule.day}
+        {previousModule?.id ? (
+          <Link
+            className="module-pagination__link"
+            to={`/modules/${previousModule.id.toLowerCase()}`}
+          >
+            ← {previousModule.day ?? previousModule.title?.fr ?? "Module"}
           </Link>
         ) : (
           <span />
         )}
-        {nextModule ? (
-          <Link className="module-pagination__link" to={`/modules/${nextModule.id.toLowerCase()}`}>
-            {nextModule.day} →
+        {nextModule?.id ? (
+          <Link
+            className="module-pagination__link"
+            to={`/modules/${nextModule.id.toLowerCase()}`}
+          >
+            {nextModule.day ?? nextModule.title?.fr ?? "Module"} →
           </Link>
         ) : (
           <span />

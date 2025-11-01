@@ -1,0 +1,18 @@
+[vite] connecting... client:733:9
+[vite] connected. client:827:12
+Uncaught Error: useModuleContent doit être utilisé à l'intérieur de ModuleContentProvider
+    useModuleContent ModuleContentContext.jsx:114
+    ModulePage ModulePage.jsx:163
+    React 10
+    performWorkUntilDeadline scheduler.development.js:45
+    js scheduler.development.js:223
+    js scheduler.development.js:364
+    __require chunk-5WRI5ZAA.js:8
+    js index.js:6
+    __require chunk-5WRI5ZAA.js:8
+    React 2
+    __require chunk-5WRI5ZAA.js:8
+    js React
+    __require chunk-5WRI5ZAA.js:8
+    <anonymous> react-dom_client.js:20192
+ModuleContentContext.jsx:94:11

@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
-import modulesData from "../data/modules-formation-web.json";
-
-const modules = modulesData.modules ?? [];
+import { useModuleContent } from "../context/ModuleContentContext.jsx";
 
 export default function DashboardPage() {
-  const upcomingModule = modules.length > 1 ? modules[1] : modules[0];
-  const focusModule = modules[0];
-  const highlightedModules = modules.slice(0, 4);
+  const { modules } = useModuleContent();
+  const moduleList = Array.isArray(modules) ? modules : [];
+  const upcomingModule = moduleList.length > 1 ? moduleList[1] : moduleList[0];
+  const focusModule = moduleList[0];
+  const highlightedModules = moduleList.slice(0, 4);
+
+  const upcomingTitle =
+    upcomingModule?.title?.fr ?? upcomingModule?.title?.en ?? "À planifier";
+  const focusTitle = focusModule?.title?.fr ?? focusModule?.title?.en ?? "Module";
 
   const stats = [
     {
@@ -14,7 +18,7 @@ export default function DashboardPage() {
       label: "Modules complétés",
       value: "3 / 10",
       helper: upcomingModule
-        ? `Prochaine étape : ${upcomingModule.title.fr}`
+        ? `Prochaine étape : ${upcomingTitle}`
         : "Programmez votre prochaine session.",
     },
     {
@@ -28,7 +32,7 @@ export default function DashboardPage() {
       label: "Heures de pratique",
       value: "9 h",
       helper: focusModule
-        ? `Focus actuel : ${focusModule.title.fr}`
+        ? `Focus actuel : ${focusTitle}`
         : "Choisissez un module à approfondir.",
     },
   ];
@@ -52,11 +56,11 @@ export default function DashboardPage() {
       id: "ressources",
       title: "Explorer les ressources clés",
       description: upcomingModule
-        ? `Préparez-vous avec les supports du module ${upcomingModule.title.fr}.`
+        ? `Préparez-vous avec les supports du module ${upcomingTitle}.`
         : "Sélectionnez un module pour découvrir ses ressources.",
       ctaLabel: "Voir les supports",
       ctaTo: upcomingModule
-        ? `/modules/${upcomingModule.id.toLowerCase()}#supports`
+        ? `/modules/${upcomingModule.id?.toLowerCase() ?? ""}#supports`
         : "/#supports",
     },
   ];
@@ -75,7 +79,7 @@ export default function DashboardPage() {
             <div className="dashboard-hero__stat">
               <span className="dashboard-hero__stat-label">Session en cours</span>
               <span className="dashboard-hero__stat-value">
-                {upcomingModule ? upcomingModule.title.fr : "À planifier"}
+                {upcomingTitle}
               </span>
             </div>
             <div className="dashboard-hero__stat">
@@ -92,7 +96,7 @@ export default function DashboardPage() {
             {upcomingModule ? (
               <Link
                 className="btn"
-                to={`/modules/${upcomingModule.id.toLowerCase()}`}
+                to={`/modules/${upcomingModule.id?.toLowerCase() ?? ""}`}
               >
                 Reprendre le module
               </Link>
@@ -151,23 +155,30 @@ export default function DashboardPage() {
             <p>Anticipez les prochaines étapes et préparez vos supports à venir.</p>
           </div>
           <ul className="dashboard-timeline">
-            {highlightedModules.map((module, index) => (
-              <li key={module.id} className="dashboard-timeline__item">
+            {highlightedModules.map((module, index) => {
+              const moduleId = module.id ?? `module-${index}`;
+              const moduleTitle = module.title?.fr ?? module.title?.en ?? "Module";
+              const moduleObjective =
+                module.objectives?.fr ?? module.objectives?.en ?? "";
+
+              return (
+                <li key={moduleId} className="dashboard-timeline__item">
                 <span className="dashboard-timeline__index">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="dashboard-timeline__content">
-                  <h3>{module.title.fr}</h3>
-                  <p>{module.objectives.fr}</p>
+                      <h3>{moduleTitle}</h3>
+                      <p>{moduleObjective}</p>
                   <Link
                     className="dashboard-timeline__link"
-                    to={`/modules/${module.id.toLowerCase()}`}
+                        to={module.id ? `/modules/${module.id.toLowerCase()}` : "/modules"}
                   >
                     Ouvrir le module →
                   </Link>
                 </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
