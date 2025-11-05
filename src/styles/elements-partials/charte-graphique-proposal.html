@@ -5,29 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charte graphique – Learn It</title>
   <style>
-/* 🎨 Thème Learn It – Variation Teal & Amber */
+/* 🎨 Thème Learn It – Variation Teal & Sage */
 
 /* ----------------------------------------------
    1. Variables principales
 ---------------------------------------------- */
 :root {
   /* Couleurs */
-  --teal-dark: #00897B;
-  --teal-light: #4DB6AC;
-  --amber: #FFC107;
-  --amber-light: #FFD54F;
-  --blue-grey: #607D8B;
+  --teal-deep: #256642;
+  --teal-base: #3A8A5C;
+  --teal-bright: #5FB38F;
+  --sage-soft: #E4EFE9;
+  --mist: #F6F7F2;
+  --charcoal: #263238;
+  --stone: #4E5C58;
 
-  --bg-light: #FAFAF9;
-  --bg-dark: #1C1C1C;
-  --text-main: #333333;
-  --text-secondary: #666666;
-  --text-darkmode: #EDEDED;
+  --bg-light: #F6F7F2;
+  --bg-dark: #1C1F1C;
+  --text-main: #2F3A35;
+  --text-secondary: #5F6F6F;
+  --text-darkmode: #E8F2EC;
 
   /* Dégradés */
-  --grad-primary: linear-gradient(135deg, #00897B, #4DB6AC);
-  --grad-warm: linear-gradient(135deg, #FFC107, #FFD54F);
-  --grad-cool: linear-gradient(135deg, #607D8B, #4DB6AC);
+  --grad-primary: linear-gradient(135deg, #256642, #5FB38F);
+  --grad-muted: linear-gradient(135deg, #E4EFE9, #F6F7F2);
+  --grad-depth: linear-gradient(135deg, rgba(37, 102, 66, 0.85), rgba(31, 82, 53, 0.75));
 
   /* Typo */
   --font-heading: "Manrope", "Poppins", sans-serif;
@@ -41,12 +43,12 @@
 
 /* Mode sombre */
 [data-theme='dark'] {
-  --bg-light: #101010;
-  --text-main: #EDEDED;
-  --teal-dark: #4DB6AC;
-  --amber: #FFD54F;
-  --blue-grey: #78909C;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --bg-light: #101412;
+  --text-main: #E8F2EC;
+  --teal-deep: #3A8A5C;
+  --teal-base: #5FB38F;
+  --stone: #9BB6AC;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.32);
 }
 
 /* ----------------------------------------------
@@ -64,7 +66,7 @@ body {
 h1, h2 {
   font-family: var(--font-heading);
   text-align: center;
-  color: var(--teal-dark);
+  color: var(--teal-deep);
   margin-top: 1.5rem;
 }
 
@@ -127,7 +129,7 @@ h2 {
 .typography .heading {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  color: var(--teal-dark);
+  color: var(--teal-deep);
 }
 
 .typography .body {
@@ -137,8 +139,8 @@ h2 {
 
 .typography .code {
   font-family: var(--font-code);
-  background: var(--bg-dark);
-  color: var(--amber-light);
+  background: rgba(37, 102, 66, 0.1);
+  color: var(--teal-deep);
   padding: 0.5rem 1rem;
   border-radius: 4px;
   display: inline-block;
@@ -157,9 +159,10 @@ h2 {
 /* ----------------------------------------------
    7. Exemple : fond global coloré
 ---------------------------------------------- */
+
 header {
   background: var(--grad-primary);
-  color: white;
+  color: #ffffff;
   padding: 1rem 0;
   border-radius: var(--radius);
   margin-bottom: 2rem;
@@ -176,42 +179,39 @@ header h1 {
   <h1>🎨 Charte graphique – Learn It</h1>
 <h2>Palette principale</h2>
 <div class="palette">
-  <div class="swatch" style="background:#00897B;color:#fff;">
-    Teal profond<br><span>#00897B</span>
+  <div class="swatch" style="background:#256642;color:#fff;">
+    Teal profond<br><span>#256642</span>
   </div>
-  <div class="swatch" style="background:#4DB6AC;color:#fff;">
-    Menthe claire<br><span>#4DB6AC</span>
+  <div class="swatch" style="background:#3A8A5C;color:#fff;">
+    Forêt<br><span>#3A8A5C</span>
   </div>
-  <div class="swatch" style="background:#FFC107;color:#000;">
-    Ambre<br><span>#FFC107</span>
+  <div class="swatch" style="background:#5FB38F;color:#0f1f18;">
+    Menthe lumineuse<br><span>#5FB38F</span>
   </div>
-  <div class="swatch" style="background:#FFD54F;color:#000;">
-    Sable doré<br><span>#FFD54F</span>
+  <div class="swatch" style="background:#E4EFE9;color:#223028;">
+    Sauge claire<br><span>#E4EFE9</span>
   </div>
-  <div class="swatch" style="background:#607D8B;color:#fff;">
-    Bleu-gris<br><span>#607D8B</span>
+  <div class="swatch" style="background:#F6F7F2;color:#39413d; border:1px solid rgba(38,50,56,0.08);">
+    Brume<br><span>#F6F7F2</span>
   </div>
-  <div class="swatch" style="background:#FAFAF9;border:1px solid #ccc;">
-    Crème<br><span>#FAFAF9</span>
-  </div>
-  <div class="swatch" style="background:#1C1C1C;color:#fff;">
-    Ardoise sombre<br><span>#1C1C1C</span>
+  <div class="swatch" style="background:#263238;color:#fff;">
+    Encre<br><span>#263238</span>
   </div>
 </div>
 
 <h2>Dégradés</h2>
 <div class="palette">
   <div class="swatch">
-    <div class="gradient" style="background:linear-gradient(135deg,#00897B,#4DB6AC);"></div>
-    <p>Flow primaire</p>
+    <div class="gradient" style="background:linear-gradient(135deg,#256642,#5FB38F);"></div>
+    <p>Élan naturel</p>
   </div>
   <div class="swatch">
-    <div class="gradient" style="background:linear-gradient(135deg,#FFC107,#FFD54F);"></div>
-    <p>Balance chaude</p>
+    <div class="gradient" style="background:linear-gradient(135deg,#E4EFE9,#F6F7F2);"></div>
+    <p>Brume matinale</p>
   </div>
   <div class="swatch">
-    <div class="gradient" style="background:linear-gradient(135deg,#607D8B,#4DB6AC);"></div>
-    <p>Calme froid</p>
+    <div class="gradient" style="background:linear-gradient(135deg,rgba(37,102,66,0.9),rgba(31,82,53,0.8));"></div>
+    <p>Sous-bois</p>
   </div>
 </div>
 

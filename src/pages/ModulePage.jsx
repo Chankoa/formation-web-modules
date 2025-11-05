@@ -199,13 +199,15 @@ export default function ModulePage() {
     return (
       <main className="module-page">
         <div className="module-hero module-hero--notfound">
-          <div className="module-hero__inner container">
-            <p className="module-hero__eyebrow">Module introuvable</p>
-            <h1>Oups, cette page n’existe pas.</h1>
-            <p className="module-hero__objective">
-              Le module que vous cherchez n’est plus disponible ou l’identifiant est incorrect.
-            </p>
-            <Link className="btn" to="/">Retour à l’accueil</Link>
+          <div className="container module-hero__grid module-hero__grid--single">
+            <div className="module-hero__content">
+              <p className="module-hero__eyebrow">Module introuvable</p>
+              <h1>Oups, cette page n’existe pas.</h1>
+              <p className="module-hero__objective">
+                Le module que vous cherchez n’est plus disponible ou l’identifiant est incorrect.
+              </p>
+              <Link className="btn" to="/">Retour à l’accueil</Link>
+            </div>
           </div>
         </div>
       </main>
@@ -266,6 +268,17 @@ export default function ModulePage() {
   ].filter(Boolean);
   const showHighlights = retentionPoints.length > 0 || exerciseDetails.length > 0;
   const showCodeExample = Boolean(codeExample?.content);
+  const heroClusterItems = (retentionPoints.length > 0 ? retentionPoints : tagList).slice(0, 4);
+  const heroNote = exerciseDetails[0] ?? "";
+
+  const eyebrowParts = ["Création web"];
+  if (day) {
+    eyebrowParts.push(`Jour ${day}`);
+  }
+  if (duration) {
+    eyebrowParts.push(duration);
+  }
+  const heroEyebrow = eyebrowParts.join(" · ");
 
   const curriculumItems = [
     ...conceptList.map((concept, index) => ({
@@ -335,41 +348,68 @@ export default function ModulePage() {
   return (
     <main className="module-page">
       <header className="module-hero">
-        <div className="module-hero__inner container">
-          <Link className="module-hero__back" to="/#modules">
-            ← Retour aux modules
-          </Link>
-          <p className="module-hero__eyebrow">Création web</p>
-          <div className="module-hero__meta">
-            <span className="module-hero__badge">{day}</span>
-            <span className="module-hero__id hidden">{id}</span>
-            <span className="module-hero__duration hidden">{duration}</span>
-          </div>
-          <h1 className="module-hero__title">{titleText}</h1>
-          <p className="module-hero__objective">{objectiveText}</p>
-          <ul className="module-hero__tags">
-            {tagList.map((tag) => (
-              <li key={tag} className="module-tag">
-                {tag}
-              </li>
-            ))}
-          </ul>
-
-          {skillsText ? (
-            <div className="module-outcome module-hero__outcome">
-              <h3>Compétence développée</h3>
-              <p>{skillsText}</p>
-            </div>
-          ) : null}
-          <div className="module-hero__actions">
-            <a className="btn" href="#programme">
-              Commencer ce module
-            </a>
-            {hasResources ? (
-              <a className="btn btn-secondary" href="#ressources">
-                Parcourir les ressources
-              </a>
+        <div className="container module-hero__grid">
+          <div className="module-hero__content">
+            <Link className="module-hero__back" to="/#modules">
+              ← Retour aux modules
+            </Link>
+            <p className="module-hero__eyebrow">{heroEyebrow}</p>
+            <h1 className="module-hero__title">{titleText}</h1>
+            <p className="module-hero__objective">{objectiveText}</p>
+            {skillsText ? (
+              <div className="module-hero__note">
+                <h3>Compétence développée</h3>
+                <p>{skillsText}</p>
+              </div>
             ) : null}
+            {tagList.length > 0 ? (
+              <ul className="module-hero__tags">
+                {tagList.map((tag) => (
+                  <li key={tag} className="module-hero__tag-chip">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <div className="module-hero__actions">
+              <a className="btn" href="#programme">
+                Commencer ce module
+              </a>
+              {hasResources ? (
+                <a className="btn btn-secondary" href="#ressources">
+                  Parcourir les ressources
+                </a>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="module-hero__visual">
+            <span className="module-hero__badge">{day ? `Jour ${day}` : "Module"}</span>
+            {heroClusterItems.length > 0 ? (
+              <div className="module-hero__cluster">
+                {heroClusterItems.map((item) => (
+                  <span key={item} className="module-hero__chip">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            <div className="module-hero__card">
+              <div className="module-hero__card-header">Informations clés</div>
+              {moduleResources.length > 0 ? (
+                <dl className="module-hero__card-body">
+                  {moduleResources.map((item) => (
+                    <div key={item.label} className="module-hero__card-row">
+                      <dt>{item.label}</dt>
+                      <dd>{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : (
+                <p className="module-hero__card-empty">Détails en cours de préparation.</p>
+              )}
+              {heroNote ? <div className="module-hero__card-note">{heroNote}</div> : null}
+            </div>
           </div>
         </div>
       </header>

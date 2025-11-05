@@ -10,6 +10,13 @@ const heroHighlights = [
   "Ressources pour accélérer vos projets",
 ];
 
+const heroTopics = [
+  "Stratégie produit",
+  "Design UI",
+  "Intégration front",
+  "Coaching projet",
+];
+
 const heroStats = [
   {
     label: "Sessions",
@@ -32,35 +39,53 @@ export default function HomePage() {
   return (
     <main className="home-page">
       <header className="home-hero">
-        <div className="container home-hero__inner">
-          <p className="home-hero__eyebrow">Création web</p>
-          <h1>Une formation intensive pour lancer vos projets web avec confiance.</h1>
-          <p className="home-hero__intro">
-            Pendant 10 journées guidées, structurez votre démarche, concevez des interfaces convaincantes
-            et livrez un site professionnel. Chaque module combine concepts clés, coaching et mise en pratique
-            pour progresser avec confiance.
-          </p>
-          <ul className="home-hero__highlights">
-            {heroHighlights.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <div className="home-hero__actions">
-            <Link className="btn" to="/dashboard">
-              Accéder au dashboard
-            </Link>
-            <a className="btn btn-secondary" href="#modules">
-              Explorer les modules
-            </a>
+        <div className="container home-hero__grid">
+          <div className="home-hero__content">
+            <p className="home-hero__eyebrow">Création web</p>
+            <h1>Une formation intensive pour lancer vos projets web avec confiance.</h1>
+            <p className="home-hero__intro">
+              Pendant 10 journées guidées, structurez votre démarche, concevez des interfaces convaincantes
+              et livrez un site professionnel. Chaque module combine concepts clés, coaching et mise en pratique
+              pour progresser avec confiance.
+            </p>
+            <ul className="home-hero__highlights">
+              {heroHighlights.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <div className="home-hero__actions">
+              <Link className="btn" to="/dashboard">
+                Accéder au dashboard
+              </Link>
+              <a className="btn btn-secondary" href="#modules">
+                Explorer les modules
+              </a>
+            </div>
           </div>
-          <div className="home-hero__meta">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="home-hero__stat">
-                <span className="home-hero__stat-label">{stat.label}</span>
-                <span className="home-hero__stat-value">{stat.value}</span>
-                <span className="home-hero__stat-helper">{stat.helper}</span>
-              </div>
-            ))}
+
+          <div className="home-hero__visual">
+            <span className="home-hero__badge">Parcours intensif</span>
+            <div className="home-hero__cluster">
+              {heroTopics.map((topic) => (
+                <span key={topic} className="home-hero__chip">
+                  {topic}
+                </span>
+              ))}
+            </div>
+            <div className="home-hero__card">
+              <div className="home-hero__card-header">Rythme du programme</div>
+              <dl className="home-hero__card-body">
+                {heroStats.map((stat) => (
+                  <div key={stat.label} className="home-hero__card-row">
+                    <dt>{stat.label}</dt>
+                    <dd>
+                      <span>{stat.value}</span>
+                      {stat.helper ? <small>{stat.helper}</small> : null}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </div>
       </header>

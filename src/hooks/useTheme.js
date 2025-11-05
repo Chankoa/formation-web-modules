@@ -3,6 +3,17 @@ import { useEffect, useState } from "react";
 const STORAGE_KEY = "formation-theme";
 const COLOR_SCHEME_KEY = "formation-color-scheme";
 
+const LEGACY_SCHEME_MAPPINGS = {
+  "teal-amber": "teal-sage",
+};
+
+const normalizeColorSchemeId = (value) => {
+  if (!value) {
+    return value;
+  }
+  return LEGACY_SCHEME_MAPPINGS[value] ?? value;
+};
+
 export const COLOR_SCHEMES = [
   {
     id: "default",
@@ -10,9 +21,9 @@ export const COLOR_SCHEMES = [
     preview: ["#e03a58", "#343434"],
   },
   {
-    id: "teal-amber",
-    label: "Teal & Amber",
-    preview: ["#00897B", "#FFC107"],
+    id: "teal-sage",
+    label: "Teal & Sage",
+    preview: ["#3A8A5C", "#256642"],
   },
 ];
 
@@ -46,8 +57,14 @@ const getInitialColorScheme = () => {
     return DEFAULT_COLOR_SCHEME;
   }
   const stored = window.localStorage.getItem(COLOR_SCHEME_KEY);
-  if (stored && isValidColorScheme(stored)) {
-    return stored;
+  if (stored) {
+    const normalized = normalizeColorSchemeId(stored);
+    if (isValidColorScheme(normalized)) {
+      if (normalized !== stored) {
+        window.localStorage.setItem(COLOR_SCHEME_KEY, normalized);
+      }
+      return normalized;
+    }
   }
   return DEFAULT_COLOR_SCHEME;
 };
@@ -96,8 +113,9 @@ export function useTheme() {
       if (!nextScheme) {
         return current ?? DEFAULT_COLOR_SCHEME;
       }
-      const resolved = isValidColorScheme(nextScheme)
-        ? nextScheme
+      const normalized = normalizeColorSchemeId(nextScheme);
+      const resolved = isValidColorScheme(normalized)
+        ? normalized
         : DEFAULT_COLOR_SCHEME;
       return resolved === current ? current : resolved;
     });
