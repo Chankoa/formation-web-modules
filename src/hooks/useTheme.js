@@ -25,6 +25,11 @@ export const COLOR_SCHEMES = [
     label: "Teal & Sage",
     preview: ["#3A8A5C", "#256642"],
   },
+  {
+    id: "kadence-ocean",
+    label: "Kadence Ocean",
+    preview: ["#2CB1BC", "#0F2A43"],
+  },
 ];
 
 const DEFAULT_COLOR_SCHEME = COLOR_SCHEMES[0].id;
